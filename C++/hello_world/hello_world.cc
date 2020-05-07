@@ -26,14 +26,16 @@
 
 #include "absl/strings/str_join.h"
 
-namespace hello_world {
-  int main() {
-    std::vector<std::string> v = {"hello"," ", "world", " ", "!"};
-    std::string s = absl::StrJoin(v, "");
+namespace hello_world 
+{
+    int main() 
+    {
+        std::vector<std::string> v = {"hello"," ", "world", " ", "!"};
+        std::string s = absl::StrJoin(v, "");
 
-    std::cout << "Joined string: " << s << "\n";
+        std::cout << "Joined string: " << s << "\n";
 
-    return(0);
-  }
+        return(0);
+    }
 }
 
