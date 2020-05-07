@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_test")
 load("//buildargs:copts.bzl", "DEFAULT_COPTS")
 
 package(default_visibility = ["//visibility:private"])
@@ -44,4 +44,20 @@ cc_library(
 cc_binary(
     name = "hello_world",
     deps = [":hello_world_lib"],
+)
+
+
+#########################################
+# Tests
+#########################################
+cc_test (
+    name = "hello_world_test",
+    srcs = [
+        "test/hello_world_test.cc",
+    ],
+    deps = [
+        ":hello_world_lib",
+        "@com_google_googletest//:gtest",
+        "@com_google_googletest//:gtest_main"
+    ],
 )

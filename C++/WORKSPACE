@@ -33,3 +33,13 @@ http_archive(
     strip_prefix = "abseil-cpp-20200225.2",
     sha256 = "f342aac71a62861ac784cadb8127d5a42c6c61ab1cd07f00aef05f2cc4988c42",
 )
+
+#
+# GoogleTest/GoogleMock - Commit 703bd9caab50b139428cea1aaff9974ebee5742e
+#
+http_archive(
+     name = "com_google_googletest",
+     urls = ["https://github.com/google/googletest/archive/release-1.10.0.zip"],
+     strip_prefix = "googletest-release-1.10.0",
+     sha256 = "94c634d499558a76fa649edb13721dce6e98fb1e7018dfaeba3cd7a083945e91",
+)
