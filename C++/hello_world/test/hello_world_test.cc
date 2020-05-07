@@ -22,8 +22,10 @@
 
 #include "gtest/gtest.h"
 
-namespace hello_world {
-    namespace test {
+namespace hello_world 
+{
+    namespace test 
+    {
         TEST(hello_world, sample_test)
         {
           EXPECT_EQ(true, true);
