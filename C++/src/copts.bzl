@@ -29,6 +29,15 @@ GCC_FLAGS = [
     "-Wno-unused-variable",
 ]
 
+LLVM_FLAGS = [
+    "-Wno-implicit-int-float-conversion",
+    "-Wno-sign-compare",
+    "-Wno-uninitialized",
+    "-Wno-unused-function",
+    "-Wno-unused-variable",
+]
+
 DEFAULT_COPTS = select({
+    "//src:llvm": LLVM_FLAGS,
     "//conditions:default": GCC_FLAGS,
 })

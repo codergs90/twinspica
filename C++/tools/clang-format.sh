@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # MIT License
 #
 # Copyright (c) 2020 Twinspica Authors
@@ -20,5 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-build -c opt --cxxopt='-std=c++2a' --define flag=llvm --symlink_prefix=/ --crosstool_top=@llvm_toolchain//:toolchain
-test --test_output=all --crosstool_top=@llvm_toolchain//:toolchain
+readonly CLANG_FORMAT_BIN="bazel run @llvm_toolchain//:bin/clang-format"
+
+find src -type f -name "*.cc" -o -name "*.hh" | xargs $CLANG_FORMAT_BIN -- --style=file -i
