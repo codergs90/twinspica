@@ -20,22 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <iostream>
-#include <string>
-#include <vector>
-
-#include "absl/strings/str_join.h"
+#include "gtest/gtest.h"
 
 namespace hello_world 
 {
-    int main() 
+    namespace test 
     {
-        std::vector<std::string> v = {"hello"," ", "world", " ", "!"};
-        std::string s = absl::StrJoin(v, "");
-
-        std::cout << "Joined string: " << s << "\n";
-
-        return(0);
-    }
+        TEST(hello_world, sample_test)
+        {
+          EXPECT_EQ(true, true);
+        }
+   }
 }
-
