@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_test")
-load("//buildargs:copts.bzl", "DEFAULT_COPTS")
+load("//src:copts.bzl", "DEFAULT_COPTS")
 
 package(default_visibility = ["//visibility:private"])
 exports_files(["LICENSE"])

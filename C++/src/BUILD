@@ -20,4 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# empty BUILD file required by bazel for resolving path
+load("//src:copts.bzl", "DEFAULT_COPTS")
+
+package(default_visibility = ["//visibility:private"])
+exports_files(["LICENSE"])
+
+config_setting(
+    name = "llvm",
+    define_values = {
+        "flag": "llvm",
+    },
+    visibility = ["//visibility:private"],
+)
