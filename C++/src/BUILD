@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-GCC_FLAGS = [
-    "-Wno-attributes",
-    "-Wno-sign-compare",
-    "-Wno-uninitialized",
-    "-Wno-unused-function",
-    "-Wno-unused-result",
-    "-Wno-unused-variable",
-]
+load("//src:copts.bzl", "DEFAULT_COPTS")
 
-DEFAULT_COPTS = select({
-    "//conditions:default": GCC_FLAGS,
-})
+package(default_visibility = ["//visibility:private"])
+exports_files(["LICENSE"])
+
+config_setting(
+    name = "llvm",
+    define_values = {
+        "flag": "llvm",
+    },
+    visibility = ["//visibility:private"],
+)

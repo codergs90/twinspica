@@ -20,4 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# empty BUILD file required by bazel for resolving path
+GCC_FLAGS = [
+    "-Wno-attributes",
+    "-Wno-sign-compare",
+    "-Wno-uninitialized",
+    "-Wno-unused-function",
+    "-Wno-unused-result",
+    "-Wno-unused-variable",
+]
+
+LLVM_FLAGS = [
+    "-Wno-implicit-int-float-conversion",
+    "-Wno-sign-compare",
+    "-Wno-uninitialized",
+    "-Wno-unused-function",
+    "-Wno-unused-variable",
+]
+
+DEFAULT_COPTS = select({
+    "//src:llvm": LLVM_FLAGS,
+    "//conditions:default": GCC_FLAGS,
+})

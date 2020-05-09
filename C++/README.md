@@ -7,3 +7,9 @@ Pre-requisites
 bazel build hello_world:all
 bazel test hello_world:all
 ```
+
+
+Clang Format
+```
+bazel run @llvm_toolchain//:bin/clang-format -- -style=llvm -dump-config > .clang-format
+```
