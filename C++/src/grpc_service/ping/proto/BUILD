@@ -20,6 +20,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#build -c opt --cxxopt='-std=c++2a' --define flag=llvm --symlink_prefix=/ --crosstool_top=@llvm_toolchain//:toolchain
-build -c opt --cxxopt='-std=c++2a' --define flag=llvm  --crosstool_top=@llvm_toolchain//:toolchain
-test --test_output=all --crosstool_top=@llvm_toolchain//:toolchain
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_cc//cc:defs.bzl", "cc_proto_library")
+load("@com_github_grpc_grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
+
+package(default_visibility = ["//visibility:public"])
+exports_files(["LICENSE"])
+
+proto_library(
+    name = "ping_service_proto",
+    srcs = [
+        "ping_service.proto",
+    ],
+)
+
+cc_proto_library(
+    name = "ping_service_cc_pb2",
+    deps = [":ping_service_proto"],
+)
+
+cc_grpc_library(
+    name = "ping_service_cc_grpc",
+    srcs = [":ping_service_proto"],
+    grpc_only = True,
+    deps = [":ping_service_cc_pb2"],
+)

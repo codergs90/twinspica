@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#build -c opt --cxxopt='-std=c++2a' --define flag=llvm --symlink_prefix=/ --crosstool_top=@llvm_toolchain//:toolchain
-build -c opt --cxxopt='-std=c++2a' --define flag=llvm  --crosstool_top=@llvm_toolchain//:toolchain
-test --test_output=all --crosstool_top=@llvm_toolchain//:toolchain
+filegroup(
+  name = "clang_c20_grpc_1_28_1_patch", 
+  srcs = ["grpc_1_28_1.patch"],
+  visibility = ["//visibility:public"]
+)
