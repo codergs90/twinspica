@@ -22,11 +22,11 @@
 
 syntax = "proto3";
 
-package PingService;
+package pingservice;
 
 // Ping ....
 service Ping {
-   rpc Ping(Request) returns (Response) {}
+   rpc RuThere(Request) returns (Response) {}
 }
 
 // Request indicates a ping request from the caller

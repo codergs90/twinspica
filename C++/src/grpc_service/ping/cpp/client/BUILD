@@ -28,10 +28,13 @@ exports_files(["LICENSE"])
 
 cc_binary(
     name = "ping_client",
-    srcs = ["client.cc"],
+    srcs = [
+        "client.hh",
+        "client.cc",
+    ],
     copts = DEFAULT_COPTS,
     deps = [
-        "//src/grpc_service/ping/proto:ping_service_cc_grpc",
-        "@com_github_grpc_grpc//:grpc++_unsecure",
+        "//src/protos:ping_service_cc_grpc",
+        "@com_github_grpc_grpc//:grpc++",
     ],
 )
