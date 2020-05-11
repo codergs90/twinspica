@@ -34,7 +34,6 @@ proto_library(
     ],
 )
 
-
 cc_proto_library(
     name = "ping_service_cc_pb2",
     deps = [":ping_service_proto"],
