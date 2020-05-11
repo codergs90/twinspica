@@ -32,7 +32,7 @@ service Ping {
 // Request indicates a ping request from the caller
 message Request {}
 
-// Response indiates an acknowlege for the ping reuqest from the server
+// Response indicates an acknowlege for the ping reuqest from the server
 message Response {
   string message = 1;
 }
