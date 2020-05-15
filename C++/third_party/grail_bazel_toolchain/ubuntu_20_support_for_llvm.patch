@@ -11,3 +11,4 @@ index 580aa6f..aab1cda 100755
      elif distname in ["arch", "ubuntu", "manjaro"] or (distname == "linuxmint" and version.startswith("18")):
          os_name = "linux-gnu-ubuntu-16.04"
      elif distname == "debian" and (version is None or int(version) == 10):
+
