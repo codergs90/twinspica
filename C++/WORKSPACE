@@ -30,6 +30,10 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(
     name = "com_grail_bazel_toolchain",
     strip_prefix = "bazel-toolchain-master",
+    patch_args = ["-p1"],
+    patches = [
+        "//third_party/grail_bazel_toolchain:ubuntu_20_support_for_llvm.patch",
+    ],
     urls = ["https://github.com/grailbio/bazel-toolchain/archive/master.tar.gz"],
     sha256 = "ed21f234186b69e3d436137dd2cc3697d593d50e3320b1a2b3f33ea39e5c1c68"
 )
