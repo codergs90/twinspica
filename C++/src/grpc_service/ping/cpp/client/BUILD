@@ -20,8 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# uncomment if we don't need symlinks for bazel generated folders
-# build -c opt --cxxopt='-std=c++2a' --define flag=llvm --symlink_prefix=/ --crosstool_top=@llvm_toolchain//:toolchain
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//src:copts.bzl", "DEFAULT_COPTS")
 
-build -c opt --cxxopt='-std=c++2a' --define flag=llvm  --crosstool_top=@llvm_toolchain//:toolchain
-test --test_output=all --crosstool_top=@llvm_toolchain//:toolchain
+package(default_visibility = ["//visibility:private"])
+exports_files(["LICENSE"])
+
+cc_binary(
+    name = "ping_client",
+    srcs = [
+        "client.hh",
+        "client.cc",
+    ],
+    copts = DEFAULT_COPTS,
+    deps = [
+        "//src/protos:ping_service_cc_grpc",
+        "@com_github_grpc_grpc//:grpc++",
+    ],
+)

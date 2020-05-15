@@ -20,17 +20,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include <grpcpp/grpcpp.h>
 
-#include "absl/strings/str_join.h"
+#include "src/protos/ping_service.grpc.pb.h"
 
-int main() {
-  std::vector<std::string> v = {"hello", " ", "world", " ", "!"};
-  std::string s = absl::StrJoin(v, "");
+namespace ping {
 
-  std::cout << "Joined string: " << s << "\n";
+using grpc::Channel;
+using grpc::ClientContext;
+using grpc::Status;
+using pingservice::Ping;
+using pingservice::Request;
+using pingservice::Response;
 
-  return (0);
-}
+class ping_client {
+  public:
+    ping_client(std::shared_ptr<Channel> channel)
+        : stub_(Ping::NewStub(channel)){};
+    std::string RuThere();
+
+  private:
+    std::unique_ptr<Ping::Stub> stub_;
+};
+} // namespace ping
