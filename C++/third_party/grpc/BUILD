@@ -19,9 +19,3 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-# uncomment if we don't need symlinks for bazel generated folders
-# build -c opt --cxxopt='-std=c++2a' --define flag=llvm --symlink_prefix=/ --crosstool_top=@llvm_toolchain//:toolchain
-
-build -c opt --cxxopt='-std=c++2a' --define flag=llvm  --crosstool_top=@llvm_toolchain//:toolchain
-test --test_output=all --crosstool_top=@llvm_toolchain//:toolchain
