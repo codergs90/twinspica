@@ -25,18 +25,16 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 #
 # Toolchain: Bring's in the C++ LLVM compiler toolchain
-# grailbio/bazel-toolchain - Commit be3bfe3d4173e8078f50ce11ef858ea7f8c2c9f5
+# grailbio/bazel-toolchain - Commit f4c17a3ae40f927ff62cc0fb8fe22b1530871807
 #
 
 http_archive(
     name = "com_grail_bazel_toolchain",
     strip_prefix = "bazel-toolchain-master",
-    patch_args = ["-p1"],
-    patches = [
-        "//third_party/grail_bazel_toolchain:ubuntu_20_support_for_llvm.patch",
-    ],
-    urls = ["https://github.com/grailbio/bazel-toolchain/archive/master.tar.gz"],
-    sha256 = "989f08b6bddd8e36c35a3d5e37b7f1a272a4b627dc56d1e51e9a0734dd35f2b0"
+    urls = ["https://github.com/codergs/bazel-toolchain/archive/master.tar.gz"],
+    # waiting for a new release, for now disabling SHA256 checks on master as
+    # it keeps moving
+    # sha256 = "17ce24a4c70f9397578a690e3b38d74a33cdcf78c34b4d2a0e70867dacf4f159"
 )
 
 load("@com_grail_bazel_toolchain//toolchain:deps.bzl", "bazel_toolchain_dependencies")
