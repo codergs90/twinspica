@@ -57,9 +57,9 @@ llvm_register_toolchains()
 #
 http_archive(
     name = "com_google_absl",
-    urls = ["https://github.com/abseil/abseil-cpp/archive/20200225.2.zip"],
-    strip_prefix = "abseil-cpp-20200225.2",
-    sha256 = "f342aac71a62861ac784cadb8127d5a42c6c61ab1cd07f00aef05f2cc4988c42",
+    urls = ["https://github.com/abseil/abseil-cpp/archive/20200923.2.zip"],
+    strip_prefix = "abseil-cpp-20200923.2",
+    sha256 = "306639352ec60dcbfc695405e989e1f63d0e55001582a5185b0a8caf2e8ea9ca",
 )
 
 #
@@ -73,7 +73,7 @@ http_archive(
 )
 
 #
-# Protobuf Rules for bazel - Commit 
+# Protobuf Rules for bazel - Commit
 #
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
@@ -99,7 +99,7 @@ http_archive(
         "https://github.com/grpc/grpc/archive/v1.28.1.zip",
     ],
     patch_args = ["-p1"],
-    patches = [ 
+    patches = [
         "//third_party/grpc:grpc_1_28_1.patch",
     ],
     strip_prefix = "grpc-1.28.1",
