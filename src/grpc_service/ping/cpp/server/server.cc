@@ -45,13 +45,6 @@ class ping_service_impl final : public Ping::Service {
 
 } // namespace ping
 
-volatile sig_atomic_t terminate = false;
-void handle_interrupt(int a) {
-    if (a == SIGINT) {
-        terminate = true;
-    }
-}
-
 int main(int argc, char **argv) {
     std::string server_address("localhost:5000");
     ping::ping_service_impl service;
