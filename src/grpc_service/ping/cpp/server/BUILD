@@ -19,3 +19,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//src:copts.bzl", "DEFAULT_COPTS")
+
+package(default_visibility = ["//visibility:private"])
+exports_files(["LICENSE"])
+
+cc_binary(
+    name = "ping_server",
+    srcs = [
+        "server.hh",
+        "server.cc",
+    ],
+    copts = DEFAULT_COPTS,
+    deps = [
+        "//src/protos:ping_service_cc_grpc",
+        "@com_github_grpc_grpc//:grpc++",
+    ],
+)
