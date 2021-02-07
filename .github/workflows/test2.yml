@@ -24,11 +24,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+    
       # Install bazel using a helper action
-      - name: Setup bazel
-        uses: jwlawson/actions-setup-bazel@v1.5
+      - name: Setup Bazel
+        uses: abhinavsingh/setup-bazel@v3
         with:
-          bazel-version: '4.0.0'
+          version: 4.0.0
+    
       # Runs a single command to ensure bazel 4.0.0 was installed
       - name: Use bazel
         run: bazel --version
