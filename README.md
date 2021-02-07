@@ -1,5 +1,7 @@
-[![CircleCI](https://circleci.com/gh/codergs90/twinspica.svg?style=shield&circle-token=869671f47dc4c8469337f5d942f59a554f869b87)](<LINK>)
+![CircleCI](https://circleci.com/gh/codergs90/twinspica.svg?style=shield&circle-token=869671f47dc4c8469337f5d942f59a554f869b87).     
 
+![All Tests](https://github.com/codergs90/twinspica/workflows/CI/badge.svg)
+    
 Pre-requisites
 ===
 
