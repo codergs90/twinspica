@@ -72,18 +72,17 @@ http_archive(
      sha256 = "94c634d499558a76fa649edb13721dce6e98fb1e7018dfaeba3cd7a083945e91",
 )
 
-#
+# bazel 4.0.0 breaking fixes - https://github.com/bazelbuild/bazel/issues/12887
 # Protobuf Rules for bazel - Commit
 #
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto",
-    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    sha256 = "96cfb2191f8b383d5470a57361745565510e7389c01f9be1a64db2e792901c3b",
+    strip_prefix = "rules_proto-cfdc2fa31879c0aebe31ce7702b1a9c8a4be02d2",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/cfdc2fa31879c0aebe31ce7702b1a9c8a4be02d2.zip",
     ],
 )
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
@@ -91,19 +90,19 @@ rules_proto_dependencies()
 rules_proto_toolchains()
 
 #
-# gRPC C++ - Commit cb81fe0dfaa424eb50de26fb7c904a27a78c3f76
+# gRPC C++ - Commit 257d0045ab958eb767a3591c88e9d0c2bdf4b916
 #
 http_archive(
     name = "com_github_grpc_grpc",
     urls = [
-        "https://github.com/grpc/grpc/archive/v1.28.1.zip",
+        "https://github.com/grpc/grpc/archive/v1.35.0.zip",
     ],
-    patch_args = ["-p1"],
-    patches = [
-        "//third_party/grpc:grpc_1_28_1.patch",
-    ],
-    strip_prefix = "grpc-1.28.1",
-    sha256 = "b0d3b876d85e4e4375aa211a52a33b7e8ca9f9d6d97a60c3c844070a700f0ea3",
+    #patch_args = ["-p1"],
+    #patches = [
+    #    "//third_party/grpc:grpc_1_28_1.patch",
+    #],
+    strip_prefix = "grpc-1.35.0",
+    sha256 = "3c432b6e3ba5eaf8c2593f4e6f61eaf363463eb533557a98a9a9adafc5e0e625",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")

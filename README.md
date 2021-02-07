@@ -5,6 +5,7 @@ Pre-requisites
 
 [Bazel Install](https://docs.bazel.build/versions/master/install.html)
 
+Test with bazel 4.0.0
 ```
 bazel build src/hello_world/cpp:all
 bazel test src/hello_world/cpp:all
