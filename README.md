@@ -1,14 +1,12 @@
-![CircleCI](https://circleci.com/gh/codergs90/twinspica.svg?style=shield&circle-token=869671f47dc4c8469337f5d942f59a554f869b87).     
-
-![All Tests](https://github.com/codergs90/twinspica/workflows/CI/badge.svg)
+![CircleCI](https://circleci.com/gh/codergs90/twinspica.svg?style=shield&circle-token=869671f47dc4c8469337f5d942f59a554f869b87) ![All Tests](https://github.com/codergs90/twinspica/workflows/CI/badge.svg)
     
 Pre-requisites
 ===
 
 [Bazel Install](https://docs.bazel.build/versions/master/install.html)
 
-Test with bazel 4.0.0
 ```
+Tested with bazel 4.0.0.
 bazel build src/hello_world/cpp:all
 bazel test src/hello_world/cpp:all
 ```
