@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       # Install bazel using a helper action
       - name: Setup bazel
-        uses: jwlawson/actions-setup-bazel@v1
+        uses: jwlawson/actions-setup-bazel@v1.5
         with:
           bazel-version: '4.0.0'
       # Runs a single command to ensure bazel 4.0.0 was installed
