@@ -18,7 +18,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ master ]
   schedule:
-    - cron: '18 16 * * 4'
+    - cron: '0 0 * * 5'
 
 jobs:
   analyze:
@@ -58,7 +58,7 @@ jobs:
       run: bazel --version
 
     # Runs a single command using the runners shell
-    - name: Run all the tests in the repo
+    - name: Build the src code
       run: bazel build //...
 
     - name: Perform CodeQL Analysis
