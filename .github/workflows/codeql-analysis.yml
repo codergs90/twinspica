@@ -59,7 +59,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build the src code
-      run: bazel build //...
+      run: bazel build -c fastbuild --spawn_strategy=local --discard_analysis_cache --nouse_action_cache //...
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
