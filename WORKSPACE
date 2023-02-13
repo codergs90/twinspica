@@ -23,11 +23,47 @@
 workspace(name = "twinspica_cpp")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+
+#
+# Go support - No gazelle
+#
+http_archive(
+    name = "io_bazel_rules_go",
+    sha256 = "dd926a88a564a9246713a9c00b35315f54cbd46b31a26d5d8fb264c07045f05d",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.38.1/rules_go-v0.38.1.zip",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.38.1/rules_go-v0.38.1.zip",
+    ],
+)
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+go_rules_dependencies()
+
+# (TODO) codergs90: Registering go toolchain here conflicts with com_github_grpc_grpc. Not sure how to fix it atm.
+#       fail("go_register_toolchains: version set after go sdk rule declared ({})".format(", ".join([r["name"] for r in sdk_rules])))
+#        Error in fail: go_register_toolchains: version set after go sdk rule declared (go_sdk)
+# go_register_toolchains(go_version = "1.19.5")
+
+#
+# Protobuf
+#
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113",
+    strip_prefix = "protobuf-3.14.0",
+    urls = [
+        "https://mirror.bazel.build/github.com/protocolbuffers/protobuf/archive/v3.14.0.tar.gz",
+        "https://github.com/protocolbuffers/protobuf/archive/v3.14.0.tar.gz",
+    ],
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+protobuf_deps()
+
 #
 # Toolchain: Bring's in the C++ LLVM compiler toolchain
 # grailbio/bazel-toolchain - Commit f4c17a3ae40f927ff62cc0fb8fe22b1530871807
 #
-
 http_archive(
     name = "com_grail_bazel_toolchain",
     strip_prefix = "bazel-toolchain-master",
@@ -38,28 +74,25 @@ http_archive(
 )
 
 load("@com_grail_bazel_toolchain//toolchain:deps.bzl", "bazel_toolchain_dependencies")
-
 bazel_toolchain_dependencies()
 
 load("@com_grail_bazel_toolchain//toolchain:rules.bzl", "llvm_toolchain")
-
 llvm_toolchain(
     name = "llvm_toolchain",
     llvm_version = "10.0.0",
 )
 
 load("@llvm_toolchain//:toolchains.bzl", "llvm_register_toolchains")
-
 llvm_register_toolchains()
 
 #
 # Google's Abesil Cpp Library - Commit c51510d1d87ebce8615ae1752fd5aca912f6cf4c
 #
 http_archive(
-    name = "com_google_absl",
-    urls = ["https://github.com/abseil/abseil-cpp/archive/20200923.2.zip"],
-    strip_prefix = "abseil-cpp-20200923.2",
-    sha256 = "306639352ec60dcbfc695405e989e1f63d0e55001582a5185b0a8caf2e8ea9ca",
+  name = "com_google_absl",
+  urls = ["https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.0.zip"],
+  strip_prefix = "abseil-cpp-20230125.0",
+  sha256 = "70a2e30f715a7adcf5b7fcd2fcef7b624204b8e32ede8a23fd35ff5bd7d513b0",
 )
 
 #
@@ -75,8 +108,6 @@ http_archive(
 # bazel 4.0.0 breaking fixes - https://github.com/bazelbuild/bazel/issues/12887
 # Protobuf Rules for bazel - Commit
 #
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 http_archive(
     name = "rules_proto",
     sha256 = "96cfb2191f8b383d5470a57361745565510e7389c01f9be1a64db2e792901c3b",
@@ -95,20 +126,17 @@ rules_proto_toolchains()
 http_archive(
     name = "com_github_grpc_grpc",
     urls = [
-        "https://github.com/grpc/grpc/archive/v1.35.0.zip",
+        "https://github.com/grpc/grpc/archive/v1.52.0.zip",
     ],
     #patch_args = ["-p1"],
     #patches = [
     #    "//third_party/grpc:grpc_1_28_1.patch",
     #],
-    strip_prefix = "grpc-1.35.0",
-    sha256 = "3c432b6e3ba5eaf8c2593f4e6f61eaf363463eb533557a98a9a9adafc5e0e625",
+    strip_prefix = "grpc-1.52.0",
+    sha256 = "e2b6ff55a5a1acf5c2de6fc5e977ae8f77249cae978f09a28520a7d8d8d8a750",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()
-
-# https://github.com/grpc/grpc/issues/22436
 load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
 grpc_extra_deps()
-

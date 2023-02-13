@@ -49,7 +49,7 @@ std::string ping_client::RuThere() {
 int main(int argc, char **argv) {
     // (TODO) twinspica authors: need to use abesil flags for command line
     // arguments to accept address + port information
-    std::string server_addr("localhost:5000");
+    std::string server_addr("127.0.0.1:5000");
     ping::ping_client client1(
         grpc::CreateChannel(server_addr, grpc::InsecureChannelCredentials()));
 

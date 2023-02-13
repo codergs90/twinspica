@@ -53,7 +53,7 @@ void handle_interrupt(int a) {
 }
 
 int main(int argc, char **argv) {
-    std::string server_address("localhost:5000");
+    std::string server_address("127.0.0.1:5000");
     ping::ping_service_impl service;
 
     grpc::EnableDefaultHealthCheckService(true);

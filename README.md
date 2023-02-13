@@ -10,10 +10,12 @@ A mono repo with bazel build system integrated for easy project setup. Currenlty
 Pre-requisites
 ===
 
-[Bazel Install](https://docs.bazel.build/versions/master/install.html)
+1. [Bazel Install](https://docs.bazel.build/versions/master/install.html)
+
 
 ```
-Tested with bazel 4.0.0.
+Tested with bazel 5.4.0.
+bazel sync
 bazel build src/hello_world/cpp:all
 bazel test src/hello_world/cpp:all
 ```
